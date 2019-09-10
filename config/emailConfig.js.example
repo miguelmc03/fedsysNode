@@ -1,0 +1,34 @@
+const nodemailer = require('nodemailer');
+
+
+module.exports = (req) => {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'contacto@gmail.com', // Cambialo por tu email
+      pass: '' // Cambialo por tu password
+    }
+  });
+
+  const mailOptions = {
+    from: `"correo CONTACTO" <${req.body.email}>`,// Cambia esta parte por el destinatario
+    to: 'correodestino@gmail.com', // Cambia esta parte por el destinatario
+    subject: 'Contacto Pagina ', // Cambia esta parte por el asunto
+    html: `
+    <strong>Nombre:</strong> ${req.body.firstName} <br/>
+    <strong>Apellido:</strong> ${req.body.lastName} <br/>
+    <strong>E-mail:</strong> ${req.body.email} <br/>
+    <strong>Teléfono:</strong> ${req.body.phone} <br/>
+    <strong>Organización:</strong> ${req.body.organization} <br/>
+    <strong>Mensaje:</strong> ${req.body.message}
+    `
+  };
+
+
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err)
+    console.log(err);
+    else
+    console.log(info);
+  });
+}

@@ -1,0 +1,30 @@
+var userModel = libRequire('users/models');
+
+module.exports.loadData = function() {
+    var users = [{
+        name: "Admin",
+        email: "admin@company.com",
+        password: "admin1234",
+        role: "admin"
+    }, {
+        name: "Superadmin",
+        email: "superadmin@company.com",
+        password: "superAdmin1234",
+        role: "superadmin"
+    }, {
+        name: "User",
+        email: "user@company.com",
+        password: "user1234",
+        role: "user"
+    }];
+
+    users.forEach(element => {
+        var newUser = new userModel(element);
+
+        userModel.addUser(newUser, (err, user) => {
+            if (err) {
+                console.log("Failed to register user");
+            }
+        });
+    });
+}

@@ -1,0 +1,15 @@
+{
+  "title": "ApiDoc Academia",
+  "name": "academia",
+  "version": "1.0.1",
+  "description": "",
+  "sampleUrl": false,
+  "defaultVersion": "0.0.0",
+  "apidoc": "0.3.0",
+  "generator": {
+    "name": "apidoc",
+    "time": "2019-01-21T22:04:16.806Z",
+    "url": "http://apidocjs.com",
+    "version": "0.17.7"
+  }
+}
