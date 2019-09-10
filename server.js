@@ -12,6 +12,8 @@ const uuidv4 = require('uuid/v4');
 const path = require('path');
 const cors = require('cors');
 
+const graphqlHTTP = require('express-graphql');
+const schema = require('./src/schema');
 
 const mongoose = require('mongoose');
 
@@ -33,7 +35,7 @@ mongoose.connection.on('error', (err) => {
 
 // [END] ** DATABASE **
 
-app.use(express.static(__dirname + '/public/dist/fedsys'));
+// app.use(express.static(__dirname + '/public/dist/fedsys'));
 app.use('/public/image', express.static(__dirname + '/public/image'));
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -55,6 +57,12 @@ configRequire('passport')(app);
 // Config modules
 libRequire('config')(app);
 
+
+// Configuracion graph
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true,
+}));
 
 app.get('/*', (req, res, next) => {
     console.log('vista de angular');
