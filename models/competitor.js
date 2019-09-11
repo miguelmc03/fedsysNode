@@ -15,7 +15,7 @@ const competitorSchema = new Schema({
     unique: true,
     required: [true, 'Athlete number is required']
   },
-  idNumber: {
+  personalID: {
     type: Number,
     unique: true,
     required: [true, 'ID number is required']
@@ -34,7 +34,7 @@ const competitorSchema = new Schema({
   },
   categories: [
     {
-      type: type.Schema.Types.ObjectId, ref:'Category',
+      type: Schema.Types.ObjectId, ref:'Category',
       required: [true, 'Categories number is required']
     }
   ],
