@@ -2,22 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
-  categoryNumber: {
+  number: {
     type: Number,
     unique: true,
     required: [true, 'Category number is required']
   },
-  categoryName: {
+  name: {
     type:String,
     unique: true,
-    required: [true, 'Category Level is required']
+    required: [true, 'Category name is required']
   },
-  categoryLevel: {
+  level: {
     type: Number,
-    unique: true,
     required: [true, 'Category Level is required']
   },
-  categoryParent: Number,
+  parent: { type: Schema.Types.ObjectId, ref:'Category' },
 },
 {
   timestamps: true
