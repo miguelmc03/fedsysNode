@@ -64,10 +64,10 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
 }));
 
-app.get('/*', (req, res, next) => {
-    console.log('vista de angular');
-    res.sendFile(path.join(__dirname, 'public', 'dist', 'fedsys', 'index.html'));
-});
+// app.get('/*', (req, res, next) => {
+//     console.log('vista de angular');
+//     res.sendFile(path.join(__dirname, 'public', 'dist', 'fedsys', 'index.html'));
+// });
 
 //port number
 const PORT = process.env.PORT;
