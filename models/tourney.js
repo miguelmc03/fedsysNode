@@ -12,7 +12,7 @@ const tourneySchema = new Schema({
     unique: true,
     required: [true, 'Tourney Level is required']
   },
-  type: [{ type: Schema.Types.ObjectId, ref:'TourneyType' }],
+  type: { type: Schema.Types.ObjectId, ref:'TourneyType' },
   competitors: [{ type: Schema.Types.ObjectId, ref:'Competitor' }],
   judges: [{ type: Schema.Types.ObjectId, ref:'Judge' }],
   categories: [{ type: Schema.Types.ObjectId, ref:'Category' }]

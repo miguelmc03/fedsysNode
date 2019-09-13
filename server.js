@@ -35,7 +35,7 @@ mongoose.connection.on('error', (err) => {
 
 // [END] ** DATABASE **
 
-// app.use(express.static(__dirname + '/public/dist/fedsys'));
+app.use(express.static(__dirname + '/public/dist/fedsys'));
 app.use('/public/image', express.static(__dirname + '/public/image'));
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -64,10 +64,10 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
 }));
 
-// app.get('/*', (req, res, next) => {
-//     console.log('vista de angular');
-//     res.sendFile(path.join(__dirname, 'public', 'dist', 'fedsys', 'index.html'));
-// });
+app.get('/*', (req, res, next) => {
+    console.log('vista de angular');
+    res.sendFile(path.join(__dirname, 'public', 'dist', 'fedsys', 'index.html'));
+});
 
 //port number
 const PORT = process.env.PORT;
