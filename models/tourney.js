@@ -1,6 +1,56 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const competitorSchema = new Schema ({
+  firstName: {
+    type:String,
+    required: [true, 'Firstname is required']
+  },
+  lastName: {
+    type:String,
+    required: [true, 'Lastname is required']
+  },
+  athlete: {
+    type: Number,
+    unique: true,
+  },
+  personalID: {
+    type: Number,
+    required: [true, 'ID number is required']
+  },
+  age: {
+    type: Number,
+    required: [true, 'Age is required']
+  },
+  gender: {
+    type:String,
+    required: [true, 'Gender is required']
+  },
+  city: {
+    type:String,
+    required: [true, 'City is required']
+  },
+  subcategories: {
+    type: subcategorySchema,
+    required: [true, 'City is required']
+  },
+  email: String,
+  phone: String,
+});
+
+const subcategorySchema = new Schema({
+  number: {
+    type: Number,
+    unique: true,
+  },
+  name: {
+    type:String,
+    unique: true,
+    required: [true, 'Subcategory name is required']
+  },
+  parent: { type: Schema.Types.ObjectId, ref:'Category' }
+});
+
 const tourneySchema = new Schema({
   number: {
     type: Number,
@@ -13,9 +63,9 @@ const tourneySchema = new Schema({
     required: [true, 'Tourney Level is required']
   },
   type: { type: Schema.Types.ObjectId, ref:'TourneyType' },
-  competitors: [{ type: Schema.Types.ObjectId, ref:'Competitor' }],
+  competitors: [competitorSchema],
   judges: [{ type: Schema.Types.ObjectId, ref:'Judge' }],
-  categories: [{ type: Schema.Types.ObjectId, ref:'Category' }]
+  subcategories: [subcategorySchema],
 },
 {
   timestamps: true

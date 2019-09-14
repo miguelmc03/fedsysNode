@@ -12,7 +12,7 @@ const tourneyTypeSchema = new Schema({
     unique: true,
     required: [true, 'Tourney Level is required']
   },
-  categories: [{ type: Schema.Types.ObjectId, ref:'Category' }],
+  subcategories: [{ type: Schema.Types.ObjectId, ref:'Subcategory' }],
 },
 {
   timestamps: true
