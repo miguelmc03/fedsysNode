@@ -5,27 +5,34 @@ module.exports = {
     Query: {
         // Categorias
         async categories() {
-            return await Category.find().populate('parent');
+            return await Category.find();
         },
         async categoryById(_,{_id}) {
-            return await Category.findById(_id).populate('parent');
+            return await Category.findById(_id);
         },
-        async categoriesByParentId(_,{parentID}) {
-            return await Category.find({parent: parentID}).populate('parent');
+        // Subcategorias
+        async subcategories() {
+            return await Subcategory.find().populate('parent');
+        },
+        async subcategoryById(_,{_id}) {
+            return await Subcategory.findById(_id).populate('parent');
+        },
+        async subcategoriesByParentId(_,{parentID}) {
+            return await Subcategory.find({parent: parentID}).populate('parent');
         },
         // Tipos de torneos
         async tourneyTypes() {
-            return await TourneyType.find().populate('categories');
+            return await TourneyType.find().populate('subcategories');
         },
         async tourneyTypeById(_,{_id}) {
-            return await TourneyType.findById(_id).populate('categories');
+            return await TourneyType.findById(_id).populate('subcategories');
         },
         // Competidores
         async competitors() {
-            return await Competitor.find().populate('categories');
+            return await Competitor.find();
         },
         async competitorById(_,{_id}) {
-            return await Competitor.findById(_id).populate('categories');
+            return await Competitor.findById(_id);
         },
         // Jueces
         async judges() {
@@ -40,14 +47,14 @@ module.exports = {
             .populate('type')
             .populate('competitors')
             .populate('judges')
-            .populate('categories');
+            .populate('subcategories');
         },
         async tourneyById(_,{_id}) {
             return await Tourney.findById(_id)
             .populate('type')
             .populate('competitors')
             .populate('judges')
-            .populate('categories');
+            .populate('subcategories');
         },
         
     },
@@ -62,6 +69,17 @@ module.exports = {
         },
         async deleteCategory(_,{_id}) {
             return await Category.findByIdAndDelete(_id);
+        },
+        // Subcategorias
+        async createSubcategory(_,{input}) {
+            const newSubcategory = newSubcCategory(input);
+            return await newSubcategory.save();
+        },
+        async updateSubcategory(_,{_id, input}) {
+            return await Subcategory.findByIdAndUpdate(_id, input);
+        },
+        async deleteSubcategory(_,{_id}) {
+            return await Subcategory.findByIdAndDelete(_id);
         },
         // Tipos de torneo
         async createTourneyType(_,{input}) {
