@@ -10,11 +10,6 @@ const competitorSchema = new Schema({
     type:String,
     required: [true, 'Lastname is required']
   },
-  athlete: {
-    type: Number,
-    unique: true,
-    required: [true, 'Athlete number is required']
-  },
   personalID: {
     type: Number,
     unique: true,
@@ -22,7 +17,7 @@ const competitorSchema = new Schema({
   },
   age: {
     type: Number,
-    required: [true, 'Athlete number is required']
+    required: [true, 'Age is required']
   },
   gender: {
     type:String,
@@ -32,12 +27,6 @@ const competitorSchema = new Schema({
     type:String,
     required: [true, 'City is required']
   },
-  categories: [
-    {
-      type: Schema.Types.ObjectId, ref:'Category',
-      required: [true, 'Categories number is required']
-    }
-  ],
   email: String,
   phone: String,
 },
