@@ -6,7 +6,9 @@ const typeDefs = `
     type Query {
         categories: [category]
         categoryById(_id: ID!): category
-        categoriesByParentId(parentID: ID!): [category]
+        subcategories: [subcategory]
+        subcategoryById(_id: ID!): subcategory
+        subcategoriesByParentId(parentID: ID!): [subcategory]
         tourneyTypes: [tourneyType]
         tourneyTypeById(_id: ID!): tourneyType
         competitors: [competitor]
@@ -20,8 +22,14 @@ const typeDefs = `
     type category {
         _id: ID
         name: String
+        createdAt: DateTime
+        updatedAt: DateTime
+    }
+
+    type subcategory {
+        _id: ID
+        name: String
         number: Int
-        level: Int
         parent: category
         createdAt: DateTime
         updatedAt: DateTime
@@ -81,6 +89,9 @@ const typeDefs = `
         createCategory(input: categoryInput!): category
         updateCategory(_id: ID!, input: categoryInput!): category
         deleteCategory(_id: ID!): category
+        createSubcategory(input: subcategoryInput!): subcategory
+        updateSubcategory(_id: ID!, input: subcategoryInput!): subcategory
+        deleteSubcategory(_id: ID!): subcategory
         createTourneyType(input: tourneyTypeInput!): tourneyType
         updateTourneyType(_id: ID!, input: tourneyTypeInput!): tourneyType
         deleteTourneyType(_id: ID!): tourneyType
@@ -97,26 +108,29 @@ const typeDefs = `
 
     input categoryInput {
         name: String!
-        number: Int!
-        level: Int!
-        parent: ID
+    }
+
+    input subcategoryInput {
+        name: String!
+        number: Int
+        parent: ID!
     }
 
     input tourneyTypeInput {
         number: Int!
         name: String!
-        categories: [ID!]
+        subcategories: [ID!]
     }
     
     input competitorInput {
         firstName: String!
         lastName: String!
-        athlete: Int!
+        athlete: Int
         personalID: Int!
         age: Int!
         gender: String!
         city: String!
-        categories: [ID!]
+        subcategories: [subcategoryInput]
         phone: String
         email: String 
     }
@@ -134,9 +148,9 @@ const typeDefs = `
         number: Int!
         name: String!
         type: ID!
-        competitors: [ID!]
-        judges: [ID!]
-        categories: [ID!]
+        competitors: [competitorInput]
+        judges: [ID]
+        subcategories: [subcategoryInput]
     }
 
 `;
