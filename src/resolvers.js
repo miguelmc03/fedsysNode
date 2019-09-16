@@ -1,4 +1,9 @@
-const Category = require('../models/category')
+const Category = require('../models/category');
+const Subcategory = require('../models/subcategory');
+const TourneyType = require('../models/tourneyType');
+const Competitor = require('../models/competitor');
+const Judge = require('../models/judge');
+const Tourney = require('../models/tourney');
 const { GraphQLScalarType } = require('graphql');
 
 module.exports = {
@@ -22,10 +27,10 @@ module.exports = {
         },
         // Tipos de torneos
         async tourneyTypes() {
-            return await TourneyType.find().populate('subcategories');
+            return await TourneyType.find().deepPopulate('subcategories subcategories.parent');
         },
         async tourneyTypeById(_,{_id}) {
-            return await TourneyType.findById(_id).populate('subcategories');
+            return await TourneyType.findById(_id).deepPopulate('subcategories subcategories.parent');
         },
         // Competidores
         async competitors() {
@@ -72,7 +77,7 @@ module.exports = {
         },
         // Subcategorias
         async createSubcategory(_,{input}) {
-            const newSubcategory = newSubcCategory(input);
+            const newSubcategory = new Subcategory(input);
             return await newSubcategory.save();
         },
         async updateSubcategory(_,{_id, input}) {

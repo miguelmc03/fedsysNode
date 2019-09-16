@@ -39,7 +39,7 @@ const typeDefs = `
         _id: ID
         number: Int
         name: String
-        categories: [category]
+        subcategories: [subcategory]
         createdAt: DateTime
         updatedAt: DateTime
     }
@@ -53,7 +53,7 @@ const typeDefs = `
         age: Int
         gender: String
         city: String
-        categories: [category]
+        subcategories: subcategory
         phone: String
         email: String
         createdAt: DateTime
@@ -79,7 +79,7 @@ const typeDefs = `
         type: tourneyType
         competitors: [competitor]
         judges: [judge]
-        categories: [category]
+        subcategories: [subcategory]
         createdAt: DateTime
         updatedAt: DateTime
     }
@@ -130,7 +130,7 @@ const typeDefs = `
         age: Int!
         gender: String!
         city: String!
-        subcategories: [subcategoryInput]
+        subcategory: subcategoryInput
         phone: String
         email: String 
     }

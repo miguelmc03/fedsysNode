@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const subcategorySchema = new Schema({
+  number: {
+    type: Number,
+    unique: true,
+  },
+  name: {
+    type:String,
+    unique: true,
+    required: [true, 'Subcategory name is required']
+  },
+  parent: { type: Schema.Types.ObjectId, ref:'Category' }
+});
+
 const competitorSchema = new Schema ({
   firstName: {
     type:String,
@@ -32,23 +45,10 @@ const competitorSchema = new Schema ({
   },
   subcategories: {
     type: subcategorySchema,
-    required: [true, 'City is required']
+    required: [true, 'Subcategory is required']
   },
   email: String,
   phone: String,
-});
-
-const subcategorySchema = new Schema({
-  number: {
-    type: Number,
-    unique: true,
-  },
-  name: {
-    type:String,
-    unique: true,
-    required: [true, 'Subcategory name is required']
-  },
-  parent: { type: Schema.Types.ObjectId, ref:'Category' }
 });
 
 const tourneySchema = new Schema({
