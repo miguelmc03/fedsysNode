@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const deepPopulate = require('mongoose-deep-populate')(mongoose)
 const Schema = mongoose.Schema;
 
 const tourneyTypeSchema = new Schema({
@@ -17,5 +18,7 @@ const tourneyTypeSchema = new Schema({
 {
   timestamps: true
 });
+
+tourneyTypeSchema.plugin(deepPopulate)
 
 module.exports = mongoose.model('TourneyType', tourneyTypeSchema)
