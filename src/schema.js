@@ -53,7 +53,7 @@ const typeDefs = `
         age: Int
         gender: String
         city: String
-        subcategories: subcategory
+        subcategory: subcategory
         phone: String
         email: String
         createdAt: DateTime
