@@ -16,7 +16,7 @@ const typeDefs = `
         judges: [judge]
         judgeById: judge
         tourneys: [tourney]
-        tourneyById: tourney
+        tourneyById(_id: ID!): tourney
     }
 
     type category {
@@ -72,14 +72,22 @@ const typeDefs = `
         updatedAt: DateTime
     }
 
-    type tourney {
+    type startingOrder{
         _id: ID
         number: Int
+        subcategory: subcategory
+        fase: String
+        active: Boolean
+    }
+
+    type tourney {
+        _id: ID
         name: String
         type: tourneyType
         competitors: [competitor]
         judges: [judge]
         subcategories: [subcategory]
+        startingOrder: [startingOrder]
         createdAt: DateTime
         updatedAt: DateTime
     }
@@ -144,13 +152,20 @@ const typeDefs = `
         email: String 
     }
 
-    input tourneyInput {
+    input startingOrderInput {
         number: Int!
+        fase: String!
+        subcategory: ID
+        active: Boolean
+    }
+
+    input tourneyInput {
         name: String!
         type: ID!
         competitors: [competitorInput]
         judges: [ID]
         subcategories: [subcategoryInput]
+        startingOrder: [startingOrderInput]
     }
 
 `;
