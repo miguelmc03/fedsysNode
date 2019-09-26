@@ -52,14 +52,13 @@ module.exports = {
             .populate('type')
             .populate('competitors')
             .populate('judges')
-            .populate('subcategories');
+            .deepPopulate('subcategories subcategories.parent');
         },
         async tourneyById(_,{_id}) {
             return await Tourney.findById(_id)
             .populate('type')
-            .populate('competitors')
             .populate('judges')
-            .populate('subcategories');
+            .deepPopulate('subcategory subcategory.parent competitors competitors.subcategory competitors.subcategory.parent startingOrder startingOrder.subcategory startingOrder.subcategory.parent');
         },
         
     },
