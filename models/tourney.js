@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
+const deepPopulate = require('mongoose-deep-populate')(mongoose)
 const Schema = mongoose.Schema;
 
 const subcategorySchema = new Schema({
+  code: {
+    type:Number,
+    required: [true, 'Subcategory name is required']
+  },
   name: {
     type:String,
-    unique: true,
     required: [true, 'Subcategory name is required']
   },
   parent: { type: Schema.Types.ObjectId, ref:'Category' },
-  // winner: competitorSchema
+  winner: String
 });
 
 const competitorSchema = new Schema ({
@@ -22,7 +26,6 @@ const competitorSchema = new Schema ({
   },
   athlete: {
     type: Number,
-    unique: true,
   },
   personalID: {
     type: Number,
@@ -41,7 +44,7 @@ const competitorSchema = new Schema ({
     required: [true, 'City is required']
   },
   subcategory: {
-    type: subcategorySchema,
+    type:  subcategorySchema,
     required: [true, 'Subcategory is required']
   },
   eliminated: Boolean,
@@ -50,20 +53,15 @@ const competitorSchema = new Schema ({
 });
 
 const staringSchema = new Schema ({
+  active: Boolean,
   number: {
     type: Number,
-    unique: true,
   },
   subcategory: subcategorySchema,
   fase: String
 });
 
 const tourneySchema = new Schema({
-  number: {
-    type: Number,
-    unique: true,
-    required: [true, 'Tourney number is required']
-  },
   name: {
     type:String,
     unique: true,
@@ -78,5 +76,7 @@ const tourneySchema = new Schema({
 {
   timestamps: true
 });
+
+tourneySchema.plugin(deepPopulate)
 
 module.exports = mongoose.model('Tourney', tourneySchema)
