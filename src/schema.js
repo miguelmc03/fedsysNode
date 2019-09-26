@@ -21,6 +21,7 @@ const typeDefs = `
 
     type category {
         _id: ID
+        code: Int
         name: String
         createdAt: DateTime
         updatedAt: DateTime
@@ -28,6 +29,7 @@ const typeDefs = `
 
     type subcategory {
         _id: ID
+        code: Int
         name: String
         number: Int
         parent: category
@@ -116,11 +118,13 @@ const typeDefs = `
 
     input categoryInput {
         name: String!
+        code: Int
     }
 
     input subcategoryInput {
         name: String!
         number: Int
+        code: Int
         parent: ID!
     }
 
