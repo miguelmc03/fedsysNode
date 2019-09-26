@@ -6,7 +6,12 @@ const categorySchema = new Schema({
     type:String,
     unique: true,
     required: [true, 'Category name is required']
-  }
+  },
+  code: {
+    type:String,
+    unique: true,
+    required: [true, 'Subcategory name is required']
+  },
 },
 {
   timestamps: true
