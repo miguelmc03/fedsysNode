@@ -57,7 +57,7 @@ const staringSchema = new Schema ({
   number: {
     type: Number,
   },
-  subcategory: subcategorySchema,
+  subcategoryCode: Number,
   fase: String
 });
 
