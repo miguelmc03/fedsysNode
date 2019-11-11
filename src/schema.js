@@ -77,7 +77,7 @@ const typeDefs = `
     type startingOrder{
         _id: ID
         number: Int
-        subcategory: subcategory
+        subcategoryCode: Int
         fase: String
         active: Boolean
     }
@@ -159,7 +159,7 @@ const typeDefs = `
     input startingOrderInput {
         number: Int!
         fase: String!
-        subcategory: ID
+        subcategoryCode: Int
         active: Boolean
     }
 
