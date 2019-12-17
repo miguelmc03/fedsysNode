@@ -136,5 +136,5 @@ module.exports = {
         serialize: (value) => value.toISOString(),
         parseValue: (value) => new Date(value),
         parseLiteral: (ast) => new Date(ast.value)
-      }),
+    }),
 };
