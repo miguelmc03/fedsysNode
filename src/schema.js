@@ -122,6 +122,7 @@ const typeDefs = `
     }
 
     input subcategoryInput {
+        _id: String
         name: String!
         number: Int
         code: Int
@@ -157,7 +158,7 @@ const typeDefs = `
     }
 
     input startingOrderInput {
-        number: Int!
+        number: Int
         fase: String!
         subcategoryCode: Int
         active: Boolean
