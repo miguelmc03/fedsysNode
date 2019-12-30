@@ -9,7 +9,6 @@ const subcategorySchema = new Schema({
   },
   name: {
     type:String,
-    unique: true,
     required: [true, 'Subcategory name is required']
   },
   parent: { type: Schema.Types.ObjectId, ref:'Category' }
